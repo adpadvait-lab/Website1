@@ -213,6 +213,7 @@ if (toFinalBtn) {
             backgroundMusic.pause();
         }
         if (finalMusic) {
+            finalMusic.currentTime = 10;
             finalMusic.play().then(() => {
                 isMusicPlaying = true;
                 if (musicToggle) {
