@@ -282,9 +282,38 @@ function drawTextWithLineBreaks(lines, x, y, fontSize, lineHeight) {
     });
 }
 
+// Auto-wrap text to fit within canvas width
+function drawWrappedText(text, x, y, fontSize, lineHeight, maxWidth) {
+    var words = text.split(' ');
+    var lines = [];
+    var currentLine = words[0];
+
+    for (var i = 1; i < words.length; i++) {
+        var testLine = currentLine + ' ' + words[i];
+        var metrics = context.measureText(testLine);
+        if (metrics.width > maxWidth) {
+            lines.push(currentLine);
+            currentLine = words[i];
+        } else {
+            currentLine = testLine;
+        }
+    }
+    lines.push(currentLine);
+
+    // Center the block vertically
+    var totalHeight = lines.length * (fontSize + lineHeight);
+    var startY = y - totalHeight / 2 + fontSize / 2;
+
+    for (var i = 0; i < lines.length; i++) {
+        context.fillText(lines[i], x, startY + i * (fontSize + lineHeight));
+    }
+}
+
 function drawText() {
-    var fontSize = Math.min(30, window.innerWidth / 28); // Adjust font size based on screen width
+    var fontSize = Math.min(28, window.innerWidth / 20); // slightly smaller on mobile
+    if (window.innerWidth < 600) fontSize = Math.min(16, window.innerWidth / 24);
     var lineHeight = 8;
+    var maxWidth = canvas.width * 0.85; // 85% of canvas width to prevent clipping
 
     context.font = fontSize + "px Comic Sans MS";
     context.textAlign = "center";
@@ -298,20 +327,12 @@ function drawText() {
     // Phrase 1: frames 0–800 (fade in 0–400, fade out 400–800)
     if(frameNumber < 400){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Every morning feels brighter", "knowing you exist in my life"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Every morning feels brighter knowing you exist in my life", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("Every morning feels brighter knowing you exist in my life", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity + 0.005;
     }
     if(frameNumber >= 400 && frameNumber < 800){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Every morning feels brighter", "knowing you exist in my life"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Every morning feels brighter knowing you exist in my life", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("Every morning feels brighter knowing you exist in my life", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity - 0.005;
     }
 
@@ -321,20 +342,12 @@ function drawText() {
     }
     if(frameNumber > 800 && frameNumber < 1200){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Out of everything this world", "could have given me"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Out of everything this world could have given me", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("Out of everything this world could have given me", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity + 0.005;
     }
     if(frameNumber >= 1200 && frameNumber < 1600){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Out of everything this world", "could have given me"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Out of everything this world could have given me", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("Out of everything this world could have given me", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity - 0.005;
     }
 
@@ -344,12 +357,12 @@ function drawText() {
     }
     if(frameNumber > 1600 && frameNumber < 2000){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        context.fillText("It somehow led me to you", canvas.width/2, canvas.height/2);
+        drawWrappedText("It somehow led me to you", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity + 0.005;
     }
     if(frameNumber >= 2000 && frameNumber < 2400){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        context.fillText("It somehow led me to you", canvas.width/2, canvas.height/2);
+        drawWrappedText("It somehow led me to you", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity - 0.005;
     }
 
@@ -359,20 +372,12 @@ function drawText() {
     }
     if(frameNumber > 2400 && frameNumber < 2800){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["That still feels", "unbelievable to me"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("That still feels unbelievable to me", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("That still feels unbelievable to me", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity + 0.005;
     }
     if(frameNumber >= 2800 && frameNumber < 3200){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["That still feels", "unbelievable to me"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("That still feels unbelievable to me", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("That still feels unbelievable to me", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity - 0.005;
     }
 
@@ -382,20 +387,12 @@ function drawText() {
     }
     if(frameNumber > 3200 && frameNumber < 3600){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Getting to know you has been", "my favorite miracle"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Getting to know you has been my favorite miracle", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("Getting to know you has been my favorite miracle", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity + 0.005;
     }
     if(frameNumber >= 3600 && frameNumber < 4000){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Getting to know you has been", "my favorite miracle"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("Getting to know you has been my favorite miracle", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("Getting to know you has been my favorite miracle", canvas.width/2, canvas.height/2, fontSize, lineHeight, maxWidth);
         opacity = opacity - 0.005;
     }
 
@@ -405,31 +402,19 @@ function drawText() {
     }
     if(frameNumber > 4000 && frameNumber < 99999){
         context.fillStyle = `rgba(255, 150, 200, ${opacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["What I feel for you keeps growing", "with every moment"], canvas.width / 2, canvas.height / 2, fontSize, lineHeight);
-        } else {
-            context.fillText("What I feel for you keeps growing with every moment", canvas.width/2, canvas.height/2);
-        }
+        drawWrappedText("What I feel for you keeps growing with every moment", canvas.width/2, canvas.height/2 - 40, fontSize, lineHeight, maxWidth);
         opacity = opacity + 0.005;
     }
     
     if(frameNumber >= 4400 && frameNumber < 99999){
         context.fillStyle = `rgba(255, 150, 200, ${secondOpacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["I want to spend my days loving you,", "slowly and endlessly"], canvas.width / 2, (canvas.height/2 + 60), fontSize, lineHeight);
-        } else {
-            context.fillText("I want to spend my days loving you, slowly and endlessly", canvas.width/2, (canvas.height/2 + 50));
-        }
+        drawWrappedText("I want to spend my days loving you, slowly and endlessly", canvas.width/2, canvas.height/2 + 30, fontSize, lineHeight, maxWidth);
         secondOpacity = secondOpacity + 0.005;
     }
 
     if(frameNumber >= 4800 && frameNumber < 99999){
         context.fillStyle = `rgba(255, 150, 200, ${thirdOpacity})`;
-        if (window.innerWidth < 600) {
-            drawTextWithLineBreaks(["Happy Valentine's Day,", "my love ❤"], canvas.width / 2, (canvas.height/2 + 100), fontSize, lineHeight);
-        } else {
-            context.fillText("Happy Valentine's Day, my love ❤", canvas.width/2, (canvas.height/2 + 120));
-        }
+        drawWrappedText("Happy Valentine's Day, my love ❤", canvas.width/2, canvas.height/2 + 100, fontSize, lineHeight, maxWidth);
         thirdOpacity = thirdOpacity + 0.005;
 
         if (button) {
