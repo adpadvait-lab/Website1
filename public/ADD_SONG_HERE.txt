@@ -1,0 +1,23 @@
+🎵 HOW TO ADD YOUR SONG 🎵
+
+1. Choose a romantic song you both love (MP3 format)
+2. Rename it to: song.mp3
+3. Place it in the "public" folder: c:\Users\Advait\Desktop\Website\public\song.mp3
+
+HOW IT WORKS:
+- A music toggle button (🔇/🔊) appears in the top-right corner
+- Click it to play/pause the music anytime
+- Music also auto-plays when they click "Click Here" button
+- The song loops continuously
+
+TIPS:
+- Keep file size under 10MB for faster loading
+- Popular Valentine's song suggestions:
+  * Perfect by Ed Sheeran
+  * Thinking Out Loud by Ed Sheeran
+  * All of Me by John Legend
+  * A Thousand Years by Christina Perri
+  * Can't Help Falling in Love
+  * Your favorite song together!
+
+If you don't have an MP3 file, you can convert songs using online converters or download from YouTube (with proper permissions).

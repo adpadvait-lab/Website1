@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Happy Valentine's Day</title>
+    <link rel="stylesheet" href="public/style.css?v=14">
+    <link rel="icon" href="public/images/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- Starfield canvas (always behind everything) -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Audio -->
+    <audio id="backgroundMusic" loop>
+      <source src="public/song1.mp4" type="audio/mp4">
+    </audio>
+    <audio id="finalMusic" loop>
+      <source src="public/song2.mp4" type="audio/mp4">
+    </audio>
+    <button id="musicToggle" title="Pause Music">🔊</button>
+
+    <!-- ============ SECTION 1: LANDING (envelope + Start) ============ -->
+    <div class="page-section active" id="landing-section">
+      <div class="landing-content">
+        <div class="envelope-wrapper">
+          <div class="envelope">
+            <div class="flap"></div>
+            <div class="body"></div>
+            <div class="letter-inside">
+              <div class="letter-paper">
+                <div class="letter-text">For You ❤️</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="next-page-btn" id="startButton">Start →</button>
+      </div>
+    </div>
+
+    <!-- ============ valentinesButton (appears after canvas text animation) ============ -->
+    <div id="valentinesButton" style="display:none;">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35z"/></svg>
+      Open Your Letter
+    </div>
+
+    <!-- ============ SECTION 3: ENVELOPE OPENING ============ -->
+    <div class="page-section" id="envelope-section">
+      <div class="landing-content">
+        <div class="envelope-wrapper">
+          <div class="envelope">
+            <div class="flap"></div>
+            <div class="body"></div>
+            <div class="letter-inside">
+              <div class="letter-paper">
+                <div class="letter-text">For You ❤️</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 4: LOVE LETTER ============ -->
+    <div class="page-section" id="letter-section">
+      <div class="letter-display">
+        <h2 class="letter-header">To Pari</h2>
+        <div class="letter-paragraphs">
+          <p class="letter-para">Hey Pari,</p>
+          <p class="letter-para">I've been thinking about you a lot, and I felt like I needed to put this into words. When I picture my future, it is never vague or uncertain. You are always there, in every version of it. Not just in the big moments, but in the quiet everyday ones that actually matter.</p>
+          <p class="letter-para">I want to be the person you can lean on. On days when everything feels easy, and especially on days when it does not. Seeing you happy genuinely means everything to me, and even the smallest smile from you makes my day better. Your laugh stays with me, and your eyes have this way of making me feel calm and sure, like everything will be okay.</p>
+          <p class="letter-para">I miss you in ways I do not always say out loud. I miss being close to you, holding you, and just feeling your presence next to me. Even when I cannot, I carry that feeling with me. Sometimes I know I want you all to myself, and I admit that it might be a little selfish, but it comes from how deeply I care about you and us.</p>
+          <p class="letter-para">More than anything, I want us. I want the life we can slowly build together, the future, the family, and all the memories that come with it. I do not need anything fancy or perfect. I just want you, and to keep choosing you, every single day.</p>
+          <p class="letter-para">With all my heart. ❤️</p>
+        </div>
+        <p class="letter-signature">Forever yours ❤️</p>
+        <button class="next-page-btn" id="toGalleryBtn">See Your Photos →</button>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 5: PHOTO GALLERY ============ -->
+    <div class="page-section" id="gallery-section">
+      <div class="gallery-display">
+        <h2 class="gallery-title">Our Memories</h2>
+        <div class="slideshow-container">
+          <div class="slide-wrapper">
+            <img src="public/images/photo1.jpg" class="slide active" alt="Photo 1">
+            <img src="public/images/photo2.jpg" class="slide" alt="Photo 2">
+            <img src="public/images/photo3.jpg" class="slide" alt="Photo 3">
+            <img src="public/images/photo4.jpg" class="slide" alt="Photo 4">
+            <img src="public/images/photo6.jpg" class="slide" alt="Photo 5">
+          </div>
+        </div>
+        <div class="gallery-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+          <span class="dot" data-index="4"></span>
+        </div>
+        <p class="photo-caption">Every moment with you is a treasure</p>
+        <button class="next-page-btn" id="toFinalBtn">Continue →</button>
+      </div>
+    </div>
+
+    <!-- ============ SECTION 6: FINAL MESSAGE ============ -->
+    <div class="page-section" id="final-section">
+      <div class="final-display">
+        <div class="final-photo-container">
+          <img src="public/images/photo6.jpg" class="final-photo" alt="Us">
+        </div>
+        <h1 class="final-title">I Love You ❤️</h1>
+        <p class="letter-signature">Happy Valentine's Day, my love!<br>Here's to forever with you 💕</p>
+      </div>
+    </div>
+
+    <script src="script.js?v=14"></script>
+  </body>
+</html>
